@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ristorante Pizzeria La Rocca – Zofingen | Italienische Küche & Tagesmenü</title>
+  <meta name="description" content="La Rocca Zofingen: Italienische Spezialitäten, Holzofenpizza, Pasta und preiswerte Tagesmenüs. Sternengasse 4, 4800 Zofingen. Jetzt Tisch reservieren.">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'terracotta': '#A83232',
+            'charcoal': '#1A1A1A',
+            'cream': '#FAF7F2',
+          },
+          fontFamily: {
+            'display': ['"Playfair Display"', 'serif'],
+            'body': ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Datos Estructurados JSON-LD: SEO Local -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Ristorante Pizzeria La Rocca",
+    "image": [
+      "https://www.larocca-zofingen.ch/assets/img/pizza.webp",
+      "https://www.larocca-zofingen.ch/assets/img/pasta.webp",
+      "https://www.larocca-zofingen.ch/assets/img/antipasti.webp",
+      "https://www.larocca-zofingen.ch/assets/img/frutti-di-mare.webp",
+      "https://www.larocca-zofingen.ch/assets/img/restaurant.png"
+    ],
+    "url": "https://www.larocca-zofingen.ch",
+    "telephone": "+41625010303",
+    "priceRange": "$$",
+    "servesCuisine": ["Italienisch", "Pizza", "Pasta"],
+    "acceptsReservations": "True",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Sternengasse 4",
+      "addressLocality": "Zofingen",
+      "postalCode": "4800",
+      "addressRegion": "AG",
+      "addressCountry": "CH"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 47.2877,
+      "longitude": 7.9459
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "11:30",
+        "closes": "14:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "17:30",
+        "closes": "23:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "17:30",
+        "closes": "23:00"
+      }
+    ],
+    "founder": {
+      "@type": "Person",
+      "name": "Emad Salem"
+    },
+    "hasMenu": {
+      "@type": "Menu",
+      "name": "La Rocca Speisekarte",
+      "hasMenuSection": [
+        { "@type": "MenuSection", "name": "Tagesmenü" },
+        { "@type": "MenuSection", "name": "Pizza" },
+        { "@type": "MenuSection", "name": "Pasta" },
+        { "@type": "MenuSection", "name": "Dessert" },
+        { "@type": "MenuSection", "name": "Getränke" }
+      ]
+    }
+  }
+  </script>
+</head>
+<body class="bg-cream text-charcoal font-body antialiased">
+
+  <!-- ========== HEADER ========== -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-cream/95 backdrop-blur-sm border-b border-charcoal/10 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20">
+
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-2 shrink-0" aria-label="La Rocca Zofingen – Startseite">
+          <img src="assets/img/logo-la-rocca.png"
+               alt="Ristorante Pizzeria La Rocca Zofingen – Logo"
+               class="h-12 md:h-14 w-auto object-contain"
+               loading="eager">
+        </a>
+
+        <!-- Navegación Desktop -->
+        <nav class="hidden md:flex items-center gap-8" aria-label="Hauptnavigation">
+          <a href="#specialita" data-i18n="nav.specialita" class="text-sm font-medium hover:text-terracotta transition-colors">Specialità</a>
+          <a href="#menu" data-i18n="nav.menu" class="text-sm font-medium hover:text-terracotta transition-colors">Menü</a>
+          <a href="#about" data-i18n="nav.about" class="text-sm font-medium hover:text-terracotta transition-colors">Über uns</a>
+          <a href="#location" data-i18n="nav.contact" class="text-sm font-medium hover:text-terracotta transition-colors">Kontakt</a>
+        </nav>
+
+        <!-- Acciones derecha -->
+        <div class="flex items-center gap-3">
+          <!-- Selector idioma desktop -->
+          <div class="hidden sm:flex items-center gap-1 text-xs font-medium">
+            <button data-lang="de" class="lang-btn px-2 py-1 rounded transition-colors" aria-label="Deutsch">DE</button>
+            <button data-lang="en" class="lang-btn px-2 py-1 rounded transition-colors" aria-label="English">EN</button>
+          </div>
+
+          <button onclick="openReservationModal()" data-i18n="cta.reserve" class="hidden sm:inline-flex items-center gap-2 bg-terracotta text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-terracotta/90 transition-colors">
+            Tisch reservieren
+          </button>
+
+          <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-charcoal/5 transition-colors" aria-label="Menü öffnen">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menú Móvil -->
+    <div id="mobile-menu" class="hidden md:hidden bg-cream border-t border-charcoal/10">
+      <nav class="px-4 py-4 space-y-2" aria-label="Mobile Navigation">
+        <a href="#specialita" data-i18n="nav.specialita" class="block py-2 text-sm font-medium hover:text-terracotta transition-colors">Specialità</a>
+        <a href="#menu" data-i18n="nav.menu" class="block py-2 text-sm font-medium hover:text-terracotta transition-colors">Menü</a>
+        <a href="#about" data-i18n="nav.about" class="block py-2 text-sm font-medium hover:text-terracotta transition-colors">Über uns</a>
+        <a href="#location" data-i18n="nav.contact" class="block py-2 text-sm font-medium hover:text-terracotta transition-colors">Kontakt</a>
+        <hr class="border-charcoal/10 my-2">
+        <button onclick="openReservationModal()" data-i18n="cta.reserve" class="w-full bg-terracotta text-white text-sm font-semibold px-5 py-3 rounded-full hover:bg-terracotta/90 transition-colors">
+          Tisch reservieren
+        </button>
+        <div class="flex items-center gap-2 pt-2">
+          <button data-lang="de" class="lang-btn px-3 py-1.5 rounded text-xs font-medium transition-colors" aria-label="Deutsch">DE</button>
+          <button data-lang="en" class="lang-btn px-3 py-1.5 rounded text-xs font-medium transition-colors" aria-label="English">EN</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========== HERO ========== -->
+    <section class="relative min-h-[90vh] flex items-center justify-center pt-16" aria-label="Willkommen">
+      <div class="absolute inset-0 bg-charcoal">
+        <img src="assets/img/pizza.webp"
+             alt="Frisch gebackene Holzofenpizza im Ristorante La Rocca Zofingen"
+             class="w-full h-full object-cover opacity-60"
+             fetchpriority="high"
+             loading="eager">
+        <div class="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/40 to-transparent"></div>
+      </div>
+
+      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center text-white">
+        <p data-i18n="hero.tagline" class="text-sm md:text-base font-medium tracking-widest uppercase text-cream/80 mb-3">Ristorante Pizzeria · Zofingen</p>
+        <h1 data-i18n="hero.title" class="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4">
+          Italienische<br><span class="text-terracotta">Spezialitäten</span>
+        </h1>
+        <p data-i18n="hero.subtitle" class="text-lg md:text-xl text-cream/90 max-w-2xl mx-auto mb-6">
+          Holzofenpizza, frische Pasta und preiswerte Tagesmenüs – mitten in der Zofinger Altstadt.
+        </p>
+
+        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm mb-8">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span data-i18n="hero.hours">Mo–Fr 11:30–14:00 & 17:30–23:00 · Sa ab 17:30</span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a href="#menu" data-i18n="hero.cta_menu" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white text-charcoal font-semibold px-6 py-3.5 rounded-full hover:bg-cream transition-colors">
+            Tagesmenü ansehen
+          </a>
+          <button onclick="openReservationModal()" data-i18n="hero.cta_reserve" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-terracotta text-white font-semibold px-6 py-3.5 rounded-full hover:bg-terracotta/90 transition-colors">
+            Online Reservieren
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECCIÓN SPECIALITÀ ========== -->
+    <section id="specialita" class="py-16 md:py-24 bg-cream" aria-label="Unsere Spezialitäten">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="text-center mb-12">
+          <p data-i18n="specialita.kicker" class="text-sm font-semibold tracking-widest uppercase text-terracotta mb-2">Specialità della Casa</p>
+          <h2 data-i18n="specialita.title" class="font-display text-3xl md:text-4xl font-bold mb-3">Frisch zubereitet, mit Liebe serviert</h2>
+          <p data-i18n="specialita.subtitle" class="text-charcoal/60 max-w-xl mx-auto">
+            Ein kleiner Vorgeschmack auf unsere Küche – von Antipasti über hausgemachte Pasta bis zu Meeresfrüchten.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Antipasti -->
+          <article class="group relative overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300">
+            <img src="assets/img/antipasti.webp"
+                 alt="Antipasti misti – italienische Vorspeisenplatte"
+                 class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500"
+                 loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-charcoal/85 via-charcoal/20 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+              <p class="text-xs font-semibold tracking-widest uppercase text-terracotta mb-1">Vorspeise</p>
+              <h3 class="font-display text-2xl font-bold mb-1">Antipasti</h3>
+              <p class="text-sm text-cream/80">Frische Vorspeisen nach italienischer Art – perfekt zum Teilen.</p>
+            </div>
+          </article>
+
+          <!-- Pasta -->
+          <article class="group relative overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300">
+            <img src="assets/img/pasta.webp"
+                 alt="Hausgemachte Pasta – Spezialität des Hauses"
+                 class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500"
+                 loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-charcoal/85 via-charcoal/20 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+              <p class="text-xs font-semibold tracking-widest uppercase text-terracotta mb-1">Primo Piatto</p>
+              <h3 class="font-display text-2xl font-bold mb-1">Pasta</h3>
+              <p class="text-sm text-cream/80">Hausgemachte Pasta – täglich frisch zubereitet.</p>
+            </div>
+          </article>
+
+          <!-- Frutti di Mare -->
+          <article class="group relative overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 sm:col-span-2 lg:col-span-1">
+            <img src="assets/img/frutti-di-mare.webp"
+                 alt="Frutti di Mare – Meeresfrüchte-Spezialität"
+                 class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500"
+                 loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-charcoal/85 via-charcoal/20 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+              <p class="text-xs font-semibold tracking-widest uppercase text-terracotta mb-1">Specialità</p>
+              <h3 class="font-display text-2xl font-bold mb-1">Frutti di Mare</h3>
+              <p class="text-sm text-cream/80">Meeresfrüchte-Spezialitäten aus nachhaltigem Fang.</p>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="text-center mt-10">
+          <a href="#menu" data-i18n="specialita.cta" class="inline-flex items-center gap-2 text-terracotta font-semibold hover:gap-3 transition-all">
+            Vollständige Menükarte ansehen
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== SECCIÓN MENÚ INTERACTIVO ========== -->
+    <section id="menu" class="py-16 md:py-24 bg-white">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 data-i18n="menu.title" class="font-display text-3xl md:text-4xl font-bold mb-3">Unsere Menükarte</h2>
+          <p data-i18n="menu.subtitle" class="text-charcoal/60 max-w-xl mx-auto">Preise in CHF. Alle Tagesmenüs inklusive Menüsalat.</p>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-2 mb-10" role="tablist" aria-label="Menükategorien">
+          <button data-category="tagesmenu" data-i18n="menu.tab.tagesmenu" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold bg-terracotta text-white transition-colors" role="tab" aria-selected="true">Tagesmenü</button>
+          <button data-category="pizza" data-i18n="menu.tab.pizza" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold bg-white text-charcoal border border-charcoal/15 hover:border-terracotta/50 transition-colors" role="tab" aria-selected="false">Pizza</button>
+          <button data-category="pasta" data-i18n="menu.tab.pasta" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold bg-white text-charcoal border border-charcoal/15 hover:border-terracotta/50 transition-colors" role="tab" aria-selected="false">Pasta</button>
+          <button data-category="dessert" data-i18n="menu.tab.dessert" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold bg-white text-charcoal border border-charcoal/15 hover:border-terracotta/50 transition-colors" role="tab" aria-selected="false">Dessert</button>
+          <button data-category="getraenke" data-i18n="menu.tab.getraenke" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold bg-white text-charcoal border border-charcoal/15 hover:border-terracotta/50 transition-colors" role="tab" aria-selected="false">Getränke</button>
+        </div>
+
+        <div id="menu-items" class="grid grid-cols-1 md:grid-cols-2 gap-5" role="tabpanel"></div>
+      </div>
+    </section>
+
+    <!-- ========== SECCIÓN SOBRE NOSOTROS ========== -->
+    <section id="about" class="py-16 md:py-24 bg-cream">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+
+          <div class="order-2 md:order-1 relative">
+            <img src="assets/img/restaurant.png"
+                 alt="Innenansicht des Ristorante La Rocca in der Zofinger Altstadt"
+                 class="w-full rounded-2xl shadow-lg object-cover aspect-[4/3]"
+                 loading="lazy">
+            <div class="absolute -bottom-4 -right-4 md:bottom-6 md:right-6 bg-cream rounded-xl shadow-lg px-4 py-3 flex items-center gap-3">
+              <span class="font-display text-2xl font-bold text-terracotta">4.6★</span>
+              <span class="text-xs text-charcoal/60 leading-tight">Google<br>Bewertungen</span>
+            </div>
+          </div>
+
+          <div class="order-1 md:order-2">
+            <p data-i18n="about.kicker" class="text-sm font-semibold tracking-widest uppercase text-terracotta mb-2">Über uns</p>
+            <h2 data-i18n="about.title" class="font-display text-3xl md:text-4xl font-bold mb-5 leading-tight">
+              Herzlich willkommen bei<br>Emad Salem
+            </h2>
+            <div class="space-y-4 text-charcoal/70 leading-relaxed">
+              <p data-i18n="about.p1">
+                Seit Jahren verwöhnen wir unsere Gäste in der Zofinger Altstadt mit authentischer italienischer Küche. Unser Gastgeber <strong class="text-charcoal">Emad Salem</strong> und sein Team legen grössten Wert auf frische Zutaten und herzliche Gastfreundschaft.
+              </p>
+              <p data-i18n="about.p2">
+                Ob knusprige Holzofenpizza, hausgemachte Pasta oder unsere beliebten Tagesmenüs – bei uns finden Sie für jeden Anlass das passende Gericht.
+              </p>
+            </div>
+
+            <div class="mt-8 flex items-center gap-6">
+              <div>
+                <p class="font-display text-3xl font-bold text-terracotta">8+</p>
+                <p data-i18n="about.stat1" class="text-xs text-charcoal/50">Tagesmenüs täglich</p>
+              </div>
+              <div class="w-px h-10 bg-charcoal/10"></div>
+              <div>
+                <p class="font-display text-3xl font-bold text-terracotta">100%</p>
+                <p data-i18n="about.stat2" class="text-xs text-charcoal/50">Frische Zutaten</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECCIÓN HORARIOS Y UBICACIÓN ========== -->
+    <section id="location" class="py-16 md:py-24 bg-white">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-10 md:gap-16">
+
+          <div>
+            <p data-i18n="location.kicker" class="text-sm font-semibold tracking-widest uppercase text-terracotta mb-2">Öffnungszeiten</p>
+            <h2 data-i18n="location.title" class="font-display text-3xl md:text-4xl font-bold mb-6">Besuchen Sie uns</h2>
+
+            <div class="bg-cream rounded-2xl p-6 shadow-sm space-y-3">
+              <div class="flex justify-between py-2 border-b border-charcoal/5">
+                <span data-i18n="location.monfri" class="font-medium text-sm">Montag – Freitag</span>
+                <span class="text-sm text-charcoal/70">11:30 – 14:00</span>
+              </div>
+              <div class="flex justify-between py-2 border-b border-charcoal/5">
+                <span class="font-medium text-sm"></span>
+                <span class="text-sm text-charcoal/70">17:30 – 23:00</span>
+              </div>
+              <div class="flex justify-between py-2">
+                <span data-i18n="location.saturday" class="font-medium text-sm">Samstag</span>
+                <span class="text-sm text-charcoal/70">17:30 – 23:00</span>
+              </div>
+              <div class="flex justify-between py-2 text-charcoal/40">
+                <span data-i18n="location.sunday" class="font-medium text-sm">Sonntag</span>
+                <span data-i18n="location.closed" class="text-sm">Geschlossen</span>
+              </div>
+            </div>
+
+            <div class="mt-8 space-y-3">
+              <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-terracotta mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                <div>
+                  <p class="font-medium text-sm">Sternengasse 4</p>
+                  <p class="text-sm text-charcoal/60">4800 Zofingen, Schweiz</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-terracotta mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <a href="tel:+41625010303" class="font-medium text-sm hover:text-terracotta transition-colors">+41 62 501 03 03</a>
+              </div>
+            </div>
+
+            <a href="https://www.google.com/maps/search/?api=1&query=Sternengasse+4,+4800+Zofingen" target="_blank" rel="noopener" data-i18n="location.cta" class="mt-8 inline-flex items-center gap-2 bg-terracotta text-white font-semibold px-6 py-3 rounded-full hover:bg-terracotta/90 transition-colors text-sm">
+              In Google Maps öffnen
+            </a>
+          </div>
+
+          <div class="rounded-2xl overflow-hidden shadow-lg bg-charcoal/5 flex items-center justify-center min-h-[300px]">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2720.5!2d7.9459!3d47.2877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sSternengasse%204%2C%204800%20Zofingen!5e0!3m2!1sde!2sch!4v1"
+              width="100%"
+              height="400"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="La Rocca Zofingen Karte"
+              class="w-full min-h-[300px]">
+            </iframe>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-charcoal text-cream/70">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <h3 data-i18n="footer.contact" class="font-display text-lg font-bold text-white mb-4">Ristorante La Rocca</h3>
+          <ul class="space-y-2 text-sm">
+            <li>Sternengasse 4</li>
+            <li>4800 Zofingen, Schweiz</li>
+            <li><a href="tel:+41625010303" class="hover:text-white transition-colors">+41 62 501 03 03</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 data-i18n="footer.legal" class="font-display text-lg font-bold text-white mb-4">Rechtliches</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" data-i18n="footer.imprint" class="hover:text-white transition-colors">Impressum</a></li>
+            <li><a href="#" data-i18n="footer.privacy" class="hover:text-white transition-colors">Datenschutz</a></li>
+            <li><a href="#" data-i18n="footer.terms" class="hover:text-white transition-colors">AGB</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 data-i18n="footer.social" class="font-display text-lg font-bold text-white mb-4">Folgen Sie uns</h3>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-terracotta transition-colors" aria-label="Facebook">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-terracotta transition-colors" aria-label="Instagram">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/10 mt-10 pt-6 text-center text-xs text-cream/40">
+        <p data-i18n="footer.copyright">&copy; 2026 Ristorante Pizzeria La Rocca Zofingen. Alle Rechte vorbehalten.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== MODAL DE RESERVA ========== -->
+  <div id="reservation-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+    <div class="absolute inset-0 bg-charcoal/70 backdrop-blur-sm" onclick="closeReservationModal()"></div>
+
+    <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between p-5 border-b border-charcoal/10">
+        <h3 data-i18n="modal.title" class="font-display text-xl font-bold">Tisch reservieren</h3>
+        <button onclick="closeReservationModal()" class="p-1.5 rounded-lg hover:bg-charcoal/5 transition-colors" aria-label="Schliessen">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="reservation-form" class="p-5 space-y-4" onsubmit="handleReservationSubmit(event)">
+        <div>
+          <label for="res-date" data-i18n="modal.date" class="block text-sm font-medium mb-1.5">Datum</label>
+          <input type="date" id="res-date" required class="w-full px-4 py-3 rounded-xl border border-charcoal/15 focus:border-terracotta focus:ring-1 focus:ring-terracotta outline-none transition-colors text-sm">
+        </div>
+
+        <div>
+          <label for="res-time" data-i18n="modal.time" class="block text-sm font-medium mb-1.5">Uhrzeit</label>
+          <select id="res-time" required class="w-full px-4 py-3 rounded-xl border border-charcoal/15 focus:border-terracotta focus:ring-1 focus:ring-terracotta outline-none transition-colors text-sm bg-white">
+            <option value="">—</option>
+            <optgroup label="Mittag / Lunch" data-i18n-attr="label" data-i18n="modal.lunch">
+              <option>11:30</option><option>12:00</option><option>12:30</option><option>13:00</option><option>13:30</option>
+            </optgroup>
+            <optgroup label="Abend / Dinner" data-i18n-attr="label" data-i18n="modal.dinner">
+              <option>17:30</option><option>18:00</option><option>18:30</option><option>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option><option>21:30</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div>
+          <label for="res-guests" data-i18n="modal.guests" class="block text-sm font-medium mb-1.5">Anzahl Personen</label>
+          <select id="res-guests" required class="w-full px-4 py-3 rounded-xl border border-charcoal/15 focus:border-terracotta focus:ring-1 focus:ring-terracotta outline-none transition-colors text-sm bg-white">
+            <option value="">—</option>
+            <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option>
+            <option>9</option><option>10</option><option>11+</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="res-name" data-i18n="modal.name" class="block text-sm font-medium mb-1.5">Name</label>
+          <input type="text" id="res-name" required placeholder="Ihr Name" class="w-full px-4 py-3 rounded-xl border border-charcoal/15 focus:border-terracotta focus:ring-1 focus:ring-terracotta outline-none transition-colors text-sm">
+        </div>
+
+        <div>
+          <label for="res-phone" data-i18n="modal.phone" class="block text-sm font-medium mb-1.5">Telefon</label>
+          <input type="tel" id="res-phone" required placeholder="+41 79 ..." class="w-full px-4 py-3 rounded-xl border border-charcoal/15 focus:border-terracotta focus:ring-1 focus:ring-terracotta outline-none transition-colors text-sm">
+        </div>
+
+        <div>
+          <label for="res-notes" class="block text-sm font-medium mb-1.5">
+            <span data-i18n="modal.notes">Bemerkungen</span> <span class="text-charcoal/40" data-i18n="modal.optional">(optional)</span>
+          </label>
+          <textarea id="res-notes" rows="2" placeholder="Allergien, Kinderstuhl, etc." class="w-full px-4 py-3 rounded-xl border border-charcoal/15 focus:border-terracotta focus:ring-1 focus:ring-terracotta outline-none transition-colors text-sm resize-none"></textarea>
+        </div>
+
+        <button type="submit" data-i18n="modal.submit" class="w-full bg-terracotta text-white font-semibold py-3.5 rounded-xl hover:bg-terracotta/90 transition-colors">
+          Reservierung anfragen
+        </button>
+
+        <p class="text-xs text-charcoal/50 text-center">
+          <span data-i18n="modal.or_phone">Oder telefonisch:</span>
+          <a href="tel:+41625010303" class="text-terracotta font-medium">+41 62 501 03 03</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========== SCRIPT PRINCIPAL ========== -->
+  <script>
+  /* ============================================================
+     La Rocca Zofingen — Script Principal
+     Módulos: Menú interactivo, Modal de reserva, Menú móvil, i18n
+     ============================================================ */
+
+  /* ----------------------------------------------------------
+     1. DATOS DEL MENÚ
+     ---------------------------------------------------------- */
+  const MENU_DATA = {
+    tagesmenu: [
+      { name: 'Tagesmenü mit Menüsalat', desc: 'Täglich wechselnd – 8+ Optionen, auch vegetarisch', price: 'CHF 19.50' },
+      { name: 'Pizza des Tages', desc: 'Holzofenpizza mit Beilagensalat', price: 'CHF 22.00' },
+      { name: 'Pasta des Tages', desc: 'Hausgemachte Pasta nach Wahl des Küchenchefs', price: 'CHF 21.50' },
+      { name: 'Risotto des Tages', desc: 'Cremiges Risotto mit saisonalen Zutaten', price: 'CHF 23.00' },
+      { name: 'Fleischgericht des Tages', desc: 'Mit Beilage und Menüsalat', price: 'CHF 26.50' },
+      { name: 'Vegetarisches Tagesmenü', desc: 'Frische Zutaten, täglich neu', price: 'CHF 18.50' },
+    ],
+    pizza: [
+      { name: 'Pizza Margherita', desc: 'Tomaten, Mozzarella, Basilikum', price: 'CHF 16.50' },
+      { name: 'Pizza La Rocca', desc: 'Tomatensauce, Mozzarella, Schinken, Champignons, Peperoni', price: 'CHF 21.50' },
+      { name: 'Pizza Prosciutto e Funghi', desc: 'Tomaten, Mozzarella, Schinken, Champignons', price: 'CHF 19.50' },
+      { name: 'Pizza Quattro Stagioni', desc: 'Tomaten, Mozzarella, Schinken, Champignons, Artischocken, Oliven', price: 'CHF 20.50' },
+      { name: 'Pizza Diavola', desc: 'Tomaten, Mozzarella, scharfe Salami, Peperoncino', price: 'CHF 19.50' },
+      { name: 'Pizza Vegetariana', desc: 'Tomaten, Mozzarella, saisonales Gemüse', price: 'CHF 18.50' },
+    ],
+    pasta: [
+      { name: 'Spaghetti Carbonara', desc: 'Guanciale, Ei, Pecorino, Pfeffer', price: 'CHF 19.50' },
+      { name: 'Tagliatelle al Ragù', desc: 'Hausgemachtes Rinderragù, Parmigiano', price: 'CHF 21.00' },
+      { name: 'Gnocchi alla Sorrentina', desc: 'Tomatensauce, Mozzarella, Basilikum', price: 'CHF 20.00' },
+      { name: 'Lasagne al Forno', desc: 'Klassische Lasagne mit Béchamel', price: 'CHF 22.00' },
+      { name: "Penne all'Arrabbiata", desc: 'Scharfe Tomatensauce, Knoblauch, Peperoncino', price: 'CHF 17.50' },
+      { name: 'Spaghetti Aglio e Olio', desc: 'Knoblauch, Olivenöl, Peperoncino', price: 'CHF 16.50' },
+    ],
+    dessert: [
+      { name: 'Tiramisù della Casa', desc: 'Hausgemacht nach Familienrezept', price: 'CHF 9.50' },
+      { name: 'Panna Cotta', desc: 'Mit Waldbeeren-Coulis', price: 'CHF 8.50' },
+      { name: 'Gelato Misto', desc: 'Drei Kugeln nach Wahl', price: 'CHF 7.50' },
+      { name: 'Profiteroles', desc: 'Mit Schokoladensauce', price: 'CHF 9.00' },
+      { name: 'Espresso Affogato', desc: 'Vanilleeis mit heissem Espresso', price: 'CHF 8.50' },
+    ],
+    getraenke: [
+      { name: 'Acqua Minerale 0,5L', desc: 'Mit oder ohne Kohlensäure', price: 'CHF 4.50' },
+      { name: 'Coca-Cola / Zero 0,3L', desc: 'Glasflasche', price: 'CHF 4.50' },
+      { name: 'Birra Moretti 0,3L', desc: 'Italienisches Lagerbier', price: 'CHF 5.50' },
+      { name: 'Hauswein Rosso / Bianco', desc: '0,1L / 0,25L / 0,5L', price: 'ab CHF 4.50' },
+      { name: 'Espresso / Doppio', desc: 'Italienischer Kaffee', price: 'CHF 3.80 / 4.80' },
+      { name: 'Limoncello', desc: 'Hausgemacht, 4cl', price: 'CHF 7.50' },
+    ]
+  };
+
+  /* ----------------------------------------------------------
+     2. MENÚ INTERACTIVO — FILTRADO POR CATEGORÍA
+     ---------------------------------------------------------- */
+  const menuContainer = document.getElementById('menu-items');
+  const filterButtons = document.querySelectorAll('.filter-btn');
+
+  function renderMenuItems(category) {
+    const items = MENU_DATA[category] || [];
+    menuContainer.innerHTML = items.map(item => `
+      <div class="bg-cream rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow border border-charcoal/5">
+        <div class="flex justify-between items-start gap-4">
+          <div class="flex-1 min-w-0">
+            <h3 class="font-semibold text-charcoal">${item.name}</h3>
+            <p class="text-sm text-charcoal/55 mt-1 leading-relaxed">${item.desc}</p>
+          </div>
+          <span class="font-display font-bold text-terracotta whitespace-nowrap text-sm">${item.price}</span>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function setActiveFilter(activeBtn) {
+    filterButtons.forEach(btn => {
+      const isActive = btn === activeBtn;
+      btn.classList.toggle('bg-terracotta', isActive);
+      btn.classList.toggle('text-white', isActive);
+      btn.classList.toggle('bg-white', !isActive);
+      btn.classList.toggle('text-charcoal', !isActive);
+      btn.classList.toggle('border', !isActive);
+      btn.classList.toggle('border-charcoal/15', !isActive);
+      btn.setAttribute('aria-selected', isActive.toString());
+    });
+  }
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const category = btn.dataset.category;
+      setActiveFilter(btn);
+      renderMenuItems(category);
+    });
+  });
+
+  renderMenuItems('tagesmenu');
+
+  /* ----------------------------------------------------------
+     3. MODAL DE RESERVA
+     ---------------------------------------------------------- */
+  const reservationModal = document.getElementById('reservation-modal');
+
+  function openReservationModal() {
+    reservationModal.classList.remove('hidden');
+    reservationModal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+    const dateInput = document.getElementById('res-date');
+    if (dateInput) {
+      dateInput.min = new Date().toISOString().split('T')[0];
+    }
+  }
+
+  function closeReservationModal() {
+    reservationModal.classList.add('hidden');
+    reservationModal.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  function handleReservationSubmit(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const data = {
+      date: form.querySelector('#res-date').value,
+      time: form.querySelector('#res-time').value,
+      guests: form.querySelector('#res-guests').value,
+      name: form.querySelector('#res-name').value,
+      phone: form.querySelector('#res-phone').value,
+      notes: form.querySelector('#res-notes').value,
+    };
+
+    console.log('Reservierungsanfrage:', data);
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.textContent = '✓';
+    submitBtn.classList.add('bg-green-600', 'hover:bg-green-700');
+    submitBtn.classList.remove('bg-terracotta', 'hover:bg-terracotta/90');
+
+    setTimeout(() => {
+      closeReservationModal();
+      form.reset();
+      submitBtn.innerHTML = originalText;
+      submitBtn.classList.remove('bg-green-600', 'hover:bg-green-700');
+      submitBtn.classList.add('bg-terracotta', 'hover:bg-terracotta/90');
+    }, 2000);
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !reservationModal.classList.contains('hidden')) {
+      closeReservationModal();
+    }
+  });
+
+  /* ----------------------------------------------------------
+     4. MENÚ HAMBURGUESA MÓVIL
+     ---------------------------------------------------------- */
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileMenuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+    const isOpen = !mobileMenu.classList.contains('hidden');
+    mobileMenuBtn.setAttribute('aria-label', isOpen ? 'Menü schliessen' : 'Menü öffnen');
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+    });
+  });
+
+  /* ----------------------------------------------------------
+     5. HEADER: EFECTO SCROLL
+     ---------------------------------------------------------- */
+  const header = document.getElementById('main-header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      header.classList.add('shadow-md');
+    } else {
+      header.classList.remove('shadow-md');
+    }
+  }, { passive: true });
+
+  /* ----------------------------------------------------------
+     6. SISTEMA DE INTERNACIONALIZACIÓN (i18n) — DE / EN
+     ---------------------------------------------------------- */
+  const TRANSLATIONS = {
+    de: {
+      'nav.specialita': 'Specialità',
+      'nav.menu': 'Menü',
+      'nav.about': 'Über uns',
+      'nav.contact': 'Kontakt',
+      'cta.reserve': 'Tisch reservieren',
+      'hero.tagline': 'Ristorante Pizzeria · Zofingen',
+      'hero.title': 'Italienische<br><span class="text-terracotta">Spezialitäten</span>',
+      'hero.subtitle': 'Holzofenpizza, frische Pasta und preiswerte Tagesmenüs – mitten in der Zofinger Altstadt.',
+      'hero.hours': 'Mo–Fr 11:30–14:00 & 17:30–23:00 · Sa ab 17:30',
+      'hero.cta_menu': 'Tagesmenü ansehen',
+      'hero.cta_reserve': 'Online Reservieren',
+      'specialita.kicker': 'Specialità della Casa',
+      'specialita.title': 'Frisch zubereitet, mit Liebe serviert',
+      'specialita.subtitle': 'Ein kleiner Vorgeschmack auf unsere Küche – von Antipasti über hausgemachte Pasta bis zu Meeresfrüchten.',
+      'specialita.cta': 'Vollständige Menükarte ansehen',
+      'menu.title': 'Unsere Menükarte',
+      'menu.subtitle': 'Preise in CHF. Alle Tagesmenüs inklusive Menüsalat.',
+      'menu.tab.tagesmenu': 'Tagesmenü',
+      'menu.tab.pizza': 'Pizza',
+      'menu.tab.pasta': 'Pasta',
+      'menu.tab.dessert': 'Dessert',
+      'menu.tab.getraenke': 'Getränke',
+      'about.kicker': 'Über uns',
+      'about.title': 'Herzlich willkommen bei<br>Emad Salem',
+      'about.p1': 'Seit Jahren verwöhnen wir unsere Gäste in der Zofinger Altstadt mit authentischer italienischer Küche. Unser Gastgeber <strong class="text-charcoal">Emad Salem</strong> und sein Team legen grössten Wert auf frische Zutaten und herzliche Gastfreundschaft.',
+      'about.p2': 'Ob knusprige Holzofenpizza, hausgemachte Pasta oder unsere beliebten Tagesmenüs – bei uns finden Sie für jeden Anlass das passende Gericht.',
+      'about.stat1': 'Tagesmenüs täglich',
+      'about.stat2': 'Frische Zutaten',
+      'location.kicker': 'Öffnungszeiten',
+      'location.title': 'Besuchen Sie uns',
+      'location.monfri': 'Montag – Freitag',
+      'location.saturday': 'Samstag',
+      'location.sunday': 'Sonntag',
+      'location.closed': 'Geschlossen',
+      'location.cta': 'In Google Maps öffnen',
+      'modal.title': 'Tisch reservieren',
+      'modal.date': 'Datum',
+      'modal.time': 'Uhrzeit',
+      'modal.lunch': 'Mittag',
+      'modal.dinner': 'Abend',
+      'modal.guests': 'Anzahl Personen',
+      'modal.name': 'Name',
+      'modal.phone': 'Telefon',
+      'modal.notes': 'Bemerkungen',
+      'modal.optional': '(optional)',
+      'modal.submit': 'Reservierung anfragen',
+      'modal.or_phone': 'Oder telefonisch:',
+      'footer.contact': 'Ristorante La Rocca',
+      'footer.legal': 'Rechtliches',
+      'footer.social': 'Folgen Sie uns',
+      'footer.imprint': 'Impressum',
+      'footer.privacy': 'Datenschutz',
+      'footer.terms': 'AGB',
+      'footer.copyright': '© 2026 Ristorante Pizzeria La Rocca Zofingen. Alle Rechte vorbehalten.'
+    },
+    en: {
+      'nav.specialita': 'Specialties',
+      'nav.menu': 'Menu',
+      'nav.about': 'About us',
+      'nav.contact': 'Contact',
+      'cta.reserve': 'Book a table',
+      'hero.tagline': 'Pizzeria Restaurant · Zofingen',
+      'hero.title': 'Italian<br><span class="text-terracotta">Specialties</span>',
+      'hero.subtitle': 'Wood-fired pizza, fresh pasta and affordable daily menus – in the heart of Zofingen\'s old town.',
+      'hero.hours': 'Mon–Fri 11:30–14:00 & 17:30–23:00 · Sat from 17:30',
+      'hero.cta_menu': 'View daily menu',
+      'hero.cta_reserve': 'Book online',
+      'specialita.kicker': 'House Specialties',
+      'specialita.title': 'Freshly prepared, served with love',
+      'specialita.subtitle': 'A small taste of our kitchen – from antipasti to homemade pasta and seafood.',
+      'specialita.cta': 'View full menu',
+      'menu.title': 'Our Menu',
+      'menu.subtitle': 'Prices in CHF. All daily menus include a side salad.',
+      'menu.tab.tagesmenu': 'Daily menu',
+      'menu.tab.pizza': 'Pizza',
+      'menu.tab.pasta': 'Pasta',
+      'menu.tab.dessert': 'Dessert',
+      'menu.tab.getraenke': 'Drinks',
+      'about.kicker': 'About us',
+      'about.title': 'Welcome, hosted by<br>Emad Salem',
+      'about.p1': 'For years we have been spoiling our guests in Zofingen\'s old town with authentic Italian cuisine. Our host <strong class="text-charcoal">Emad Salem</strong> and his team place the utmost importance on fresh ingredients and warm hospitality.',
+      'about.p2': 'Whether crispy wood-fired pizza, homemade pasta or our popular daily menus – you will find the perfect dish for every occasion.',
+      'about.stat1': 'Daily menus',
+      'about.stat2': 'Fresh ingredients',
+      'location.kicker': 'Opening hours',
+      'location.title': 'Visit us',
+      'location.monfri': 'Monday – Friday',
+      'location.saturday': 'Saturday',
+      'location.sunday': 'Sunday',
+      'location.closed': 'Closed',
+      'location.cta': 'Open in Google Maps',
+      'modal.title': 'Book a table',
+      'modal.date': 'Date',
+      'modal.time': 'Time',
+      'modal.lunch': 'Lunch',
+      'modal.dinner': 'Dinner',
+      'modal.guests': 'Number of guests',
+      'modal.name': 'Name',
+      'modal.phone': 'Phone',
+      'modal.notes': 'Notes',
+      'modal.optional': '(optional)',
+      'modal.submit': 'Request reservation',
+      'modal.or_phone': 'Or by phone:',
+      'footer.contact': 'Ristorante La Rocca',
+      'footer.legal': 'Legal',
+      'footer.social': 'Follow us',
+      'footer.imprint': 'Imprint',
+      'footer.privacy': 'Privacy policy',
+      'footer.terms': 'Terms',
+      'footer.copyright': '© 2026 Ristorante Pizzeria La Rocca Zofingen. All rights reserved.'
+    }
+  };
+
+  const PLACEHOLDERS = {
+    de: { name: 'Ihr Name', phone: '+41 79 ...', notes: 'Allergien, Kinderstuhl, etc.' },
+    en: { name: 'Your name', phone: '+41 79 ...', notes: 'Allergies, high chair, etc.' }
+  };
+
+  /**
+   * Aplica el idioma seleccionado a todos los elementos con [data-i18n].
+   * Usa innerHTML para permitir etiquetas HTML (<br>, <span>, <strong>) en las traducciones.
+   */
+  function setLanguage(lang) {
+    if (!TRANSLATIONS[lang]) return;
+
+    // Actualizar <html lang="...">
+    document.documentElement.lang = lang === 'de' ? 'de-CH' : 'en';
+
+    // Traducir elementos con data-i18n (contenido)
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const attr = el.getAttribute('data-i18n-attr'); // Para traducir atributos (ej: label de optgroup)
+      const translation = TRANSLATIONS[lang][key];
+
+      if (translation === undefined) return;
+
+      if (attr) {
+        el.setAttribute(attr, translation);
+      } else {
+        el.innerHTML = translation;
+      }
+    });
+
+    // Actualizar placeholders del formulario
+    const nameInput = document.getElementById('res-name');
+    const phoneInput = document.getElementById('res-phone');
+    const notesInput = document.getElementById('res-notes');
+    if (nameInput) nameInput.placeholder = PLACEHOLDERS[lang].name;
+    if (phoneInput) phoneInput.placeholder = PLACEHOLDERS[lang].phone;
+    if (notesInput) notesInput.placeholder = PLACEHOLDERS[lang].notes;
+
+    // Actualizar estado visual de los botones de idioma
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      const isActive = btn.dataset.lang === lang;
+      btn.classList.toggle('bg-terracotta', isActive);
+      btn.classList.toggle('text-white', isActive);
+      btn.classList.toggle('text-charcoal', !isActive);
+      btn.classList.toggle('hover:bg-charcoal/5', !isActive);
+    });
+
+    // Persistir elección
+    try { localStorage.setItem('larocca-lang', lang); } catch (e) { /* ignore */ }
+  }
+
+  // Asignar eventos a TODOS los botones de idioma (desktop + móvil)
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      setLanguage(btn.dataset.lang);
+    });
+  });
+
+  // Inicialización: cargar idioma guardado o detectar el del navegador
+  (function initLanguage() {
+    let savedLang = null;
+    try { savedLang = localStorage.getItem('larocca-lang'); } catch (e) { /* ignore */ }
+
+    if (savedLang && TRANSLATIONS[savedLang]) {
+      setLanguage(savedLang);
+    } else {
+      const browserLang = (navigator.language || 'de').toLowerCase();
+      setLanguage(browserLang.startsWith('en') ? 'en' : 'de');
+    }
+  })();
+  </script>
+</body>
+</html>
